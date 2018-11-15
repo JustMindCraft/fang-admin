@@ -1,28 +1,18 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// in src/App.js
+import React from 'react';
+import { Admin, Resource } from 'react-admin';
+import dataProvider from './dataProvider';
+import Dashboard from './Dashboard';
+import authProvider from './authProvider';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import {UserList} from './users';
+import {RoleList} from './roles';
+
+const App = () => (
+  <Admin dashboard={Dashboard} authProvider={authProvider}  dataProvider={dataProvider} >
+    <Resource name="users" options={{ label: '用户管理' }} list={UserList} />
+    <Resource name="roles" options={{ label: '角色管理' }} list={RoleList} />
+  </Admin>
+);
 
 export default App;
